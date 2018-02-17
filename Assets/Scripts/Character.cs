@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*Universidad del valle de guatemala
+ * Nombre: Marlon Fuentes
+ * Laboratorio 5 
+ * Funcionalidad del personaje 
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +17,9 @@ public class Character : MonoBehaviour {
     private float speed = 5f;
     private float jumpForce = 250f;
     private bool facingRight = true;
+    //Obtenemos el gameobject creado 
     public GameObject feet;
+    //Definimos la posicion 
     public LayerMask layerMask;
 
 
@@ -33,7 +40,7 @@ public class Character : MonoBehaviour {
         anim.SetFloat("Speed", Mathf.Abs(move));
 
         sr.flipX = !facingRight;
-
+        //Si se acciona el colicionador del raycast, salta, de lo contrario hace nada. 
         if (Input.GetButtonDown("Jump")) {
     
             RaycastHit2D raycast = Physics2D.Raycast(feet.transform.position, Vector2.down, 0.1f, layerMask);
