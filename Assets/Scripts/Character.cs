@@ -12,7 +12,8 @@ public class Character : MonoBehaviour {
     private float speed = 5f;
     private float jumpForce = 250f;
     private bool facingRight = true;
- 
+    public GameObject feet;
+    public LayerMask layerMask;
 
 
 	void Start () {
@@ -34,7 +35,12 @@ public class Character : MonoBehaviour {
         sr.flipX = !facingRight;
 
         if (Input.GetButtonDown("Jump")) {
-            rb2d.AddForce(Vector2.up*jumpForce);
+    
+            RaycastHit2D raycast = Physics2D.Raycast(feet.transform.position, Vector2.down, 0.1f, layerMask);
+            if(raycast.collider != null)
+            {
+                rb2d.AddForce(Vector2.up * jumpForce);
+            }
         }
 	}
 }
